@@ -21,7 +21,7 @@ public:
     int length() const {return static_cast<int>(cur_ - data_);}
 private:
     const char* end() const { return data_ + sizeof(data_); }
-    char data_[4000];   //4MB会报错
+    char data_[4000 * 100];   //4MB会报错
     char* cur_;
 };
 

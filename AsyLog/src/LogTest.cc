@@ -47,6 +47,7 @@ Global_obj A;
 int
 main (int argc, char **argv)
 {
+	char pRuleTmp[256] = {0};
 	pthread_t thr;
 	int s = pthread_create(&thr, NULL, threadFunc, NULL);
 	if(s != 0)
@@ -54,6 +55,8 @@ main (int argc, char **argv)
 		LOG_ERROR("create thread error!");
 		exit(1);
 	}
+	int len = snprintf(pRuleTmp, 20, "yuan");
+	LOG_INFO("----------yuanIN:%d\n", len);
 	sleep(4);
 
 
