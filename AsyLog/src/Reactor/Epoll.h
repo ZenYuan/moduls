@@ -3,20 +3,21 @@
 #include "Reactor/Poller.h"
 #include <vector>
 
+#define MAXEVENT (32)
+
 class EpollPoller: public Poller
 {
 public:
     EpollPoller();
-    int add(Channel* channel);
-    int del();
-    int dispatch();
+    void updateChannel(Channel* channel);
+    void delChannel(Channel* channel);
+    void dispatch();
     ~EpollPoller();
 private:
-    int addChannel(int operation, Channel* channel);
+    void EpollCtl(int op, Channel* channel);
 
     int epfd_;
-    const int maxEventNum_ = 32;
-    vector<struct event> revents_;
+    vector<struct epoll_event> revents_;
 };
 
 
