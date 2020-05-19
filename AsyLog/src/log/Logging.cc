@@ -5,13 +5,13 @@
 #include <iostream>
 
 
+//TODO：增加异步日志文件
 void defaultOut(const char* msg, int len)
 {
     ::fwrite(msg, 1, len, stdout);
 }
 
 Logger::OutputFunc g_output = defaultOut;
-
 
 const char* LogLevelName[Logger::NUM_LOG_LEVELS]=
 {

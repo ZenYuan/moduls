@@ -1,12 +1,13 @@
 #ifndef __LOGGER_H
 #define __LOGGER_H
 #include <time.h>
+#include <cstring>
 
 class Buffer
 {
 public:
     Buffer():cur_(data_){}
-    void append(const char* buf, size_t len)   //size_t内置数组长度类型
+    void append(const char* buf, int len)   //size_t内置数组长度类型
     {
         if ( len < avail() )
         {
@@ -61,12 +62,11 @@ private:
         Logger::LogLevel level_;
         int line_;
         const char* func_;
-        const char* basename_;  //const如果是底层含义需要在初始化列表中赋值
+        const char* basename_;
         char time_[65];
     };
 
-//复合,先调用内部的构造函数，再调用外部的构造函数
-    Buffer buffer_; //调用默认构造函数
+    Buffer buffer_;
     Impl impl_;
 };
 
